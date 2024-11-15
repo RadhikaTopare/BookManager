@@ -9,15 +9,17 @@ class Book(models.Model):
         ('U', 'Unread'),
     ]
     GENRE_CHOICES = [
-        ('Action', 'Action'),
+        ('Fiction', 'Fiction'),
         ('Biography', 'Biography'),
-        ('Drama', 'Drama'),
-        ('Romantic','Romantic'),
-        ('Comedy', 'Comedy'),
-        ('War', 'War'),
-        ('Gangster', 'Gangster'),
+        ('Mystery', 'Mystery'),
+        ('Romance','Romance'),
+        ('Comics', 'Comics'),
+        ('Kids_Book', 'Kids_Book'),
+        ('History', 'History'),
         ('Horror', 'Horror'),
-        ('Finance','Finance'),
+        ('Finannce','Finance'),
+        ('Science','Science'),
+        ('Self-Help','Self-Help'),
     ]
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)

@@ -33,17 +33,21 @@ def book_create(request):
         book = form.save(commit=False)  # Create the book instance without saving
         book.user = request.user        # Assign the logged-in user to the book's user field
         book.save() 
-        return redirect('book_list')
+        return redirect('dashboard')
+    else:
+        form = BookForm()
     return render(request, 'book_form.html', {'form': form})
 
 @login_required
 def dashboard(request):
     if request.method == 'POST':
         book_id = request.POST.get('book_id')
-        book = get_object_or_404(Book, pk=book_id)
+        book = get_object_or_404(Book, pk=book_id,user=request.user)
         book.delete()
         return redirect('dashboard')
-    total_books = Book.objects.filter(user=request.user).count()
+    books = Book.objects.filter(user=request.user)
+    
+    total_books = books.count()
     books_read = Book.objects.filter(user=request.user, status='R').count()
     genre_stats = Book.objects.values('genre').annotate(count=Count('genre')).order_by('-count')
     genre_distribution = Book.objects.filter(user=request.user).values('genre').annotate(count=Count('genre'))
@@ -57,7 +61,7 @@ def dashboard(request):
         'avg_rating': avg_rating['rating__avg'],
         'books': books,
     }
-    return render(request, 'dashboard.html', context)
+    return render(request,'dashboard.html',context)
 # List all books
 @login_required
 def book_list(request):
