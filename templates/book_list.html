@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>My Book Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4" data-aos="fade-down">My Book Collection</h1>
+        <div class="container mt-5">
+            <h2>All Books</h2>
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card" data-aos="fade-up">
+                           
+                            <div class="card-body">
+                                <td><img src="{% if book.poster %}{{ book.poster.url }}{% else %}{{ '/static/default-image.jpg' }}{% endif %}" alt="{{ book.title }}" width="50" height="75"></td>
+                                <h5 class="card-title">{{ book.title }}</h5>
+                                <p class="card-text">{{ book.description }}</p>
+                                <p><strong>Title:</strong> {{ book.title }}</p>
+                                <p><strong>Author:</strong> {{ book.author }}</p>
+                                <p><strong>Genre:</strong> {{ book.genre }}</p>
+                                <p><strong>Rating:</strong> {{ book.rating }}</p>
+                                <p><strong>Publish:</strong> {{ book.publish_date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No books available.</p>
+                {% endfor %}
+            </div>
+        </div>         
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();  // Initialize AOS here after loading the script
+    </script>
+</body>
+</html>

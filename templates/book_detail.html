@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ book.title }}</h2>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Genre:</strong> {{ book.genre }}</p>
+        <p><strong>Rating:</strong> {{ book.rating }}/5</p>
+        <p><strong>Status:</strong> {{ book.get_status_display }}</p>
+        <a href="{% url 'book_update' book.pk %}" class="btn btn-warning">Edit</a>
+        <form action="{% url 'book_delete' book.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</body>
+</html>
