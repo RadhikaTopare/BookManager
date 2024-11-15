@@ -11,7 +11,16 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-light">
-
+    <td>   <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Welcome, {{ request.user.username }}!</h5>
+            <p class="card-text">Here you can manage your books.</p>
+            
+            <!-- Logout Button -->
+            <a href="{% url 'user_logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+    </div> </td>
+    <td>
     <div class="container my-5">
         <h1 class="text-center mb-5">Books Dashboard</h1>
             
@@ -100,8 +109,8 @@
                     {% endif %}
                     </tbody>
                 </table>
-
-        <p>Total Books: {{ total_books }}</p>
-        <p>Books Read: {{ books_read }}</p>
+            </td>
+     <p>Total Books: {{ total_books }}</p>
+     <p>Books Read: {{ books_read }}</p>
     </div>
 </body>

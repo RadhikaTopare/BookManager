@@ -24,6 +24,7 @@ from Books.views import user_login , user_logout , book_create ,dashboard , book
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',user_login, name='user_login'),
+    path('logout/',user_logout, name='user_logout'),
     path('list/', book_list, name='book_list'),
     path('add/', book_create, name='book_create'),
     path('d/', dashboard, name='dashboard'),

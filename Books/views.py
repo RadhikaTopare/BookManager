@@ -18,12 +18,6 @@ def user_login(request):
             return redirect('book_list')
     return render(request, 'login.html')
 
-# User Logout
-@login_required
-def user_logout(request):
-    logout(request)
-    return redirect('user_login')
-
 
 # Create a new book
 @login_required
@@ -90,3 +84,10 @@ def book_update(request, pk):
         form = BookForm(instance=book)  # Pre-fill the form with the book data
 
     return render(request, 'book_update.html', {'form': form, 'book': book})
+
+
+# User Logout
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
